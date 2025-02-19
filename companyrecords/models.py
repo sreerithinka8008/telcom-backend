@@ -27,6 +27,7 @@ class Company(models.Model):
     company_name = models.CharField(max_length=250)
     contact_person = models.CharField(max_length=250)
     company_email = models.EmailField()
+    company_website = models.CharField(max_length=250, default=None, null=True, blank=True)
     country = models.CharField(max_length=250)
     company_phone = models.CharField(max_length=15)
     address = models.CharField(max_length=250)
