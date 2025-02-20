@@ -52,9 +52,12 @@ class SwitchIP(models.Model):
     ip = models.CharField(max_length=250, unique=True)
     is_deleted = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.ip
 
 # Follow Up
 class FollowUp(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     is_deleted = models.BooleanField(default=False)
