@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, filters
 from .serializers import CompanySerializer, SwitchIPSerializer, FollowUPSerializer
 from .models import Company, SwitchIP, FollowUp
 
@@ -6,6 +6,8 @@ from .models import Company, SwitchIP, FollowUp
 class CompanyListCreateView(generics.ListCreateAPIView):
     serializer_class = CompanySerializer
     queryset = Company.objects.filter(is_deleted=False)
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["company_name", "switchip__ip"]
 
 class CompanyRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CompanySerializer
